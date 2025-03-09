@@ -157,8 +157,8 @@ public class FoodServiceImpl implements FoodService {
             FoodServiceImpl.LOGGER.error("[deleteFoodOrder][Cancel FoodOrder][Order Id Is Non-Existent][orderId: {}]", orderId);
             return new Response<>(0, orderIdNotExist, null);
         } else {
-           foodOrderRepository.deleteFoodOrderByOrderId(UUID.fromString(orderId));
-            // foodOrderRepository.deleteFoodOrderByOrderId(orderId);
+        //    foodOrderRepository.deleteFoodOrderByOrderId(UUID.fromString(orderId));
+            foodOrderRepository.deleteFoodOrderByOrderId(orderId);
             FoodServiceImpl.LOGGER.info("[deleteFoodOrder][Cancel FoodOrder Success]");
             return new Response<>(1, success, null);
         }
