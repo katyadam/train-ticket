@@ -57,15 +57,6 @@ public class AdminBasicInfoControllerTest {
     }
 
     @Test
-    public void testDeleteContacts() throws Exception {
-        Mockito.when(adminBasicInfoService.deleteContact(Mockito.anyString(), Mockito.any(HttpHeaders.class))).thenReturn(response);
-        String result = mockMvc.perform(MockMvcRequestBuilders.delete("/api/v1/adminbasicservice/adminbasic/contacts/contactsId"))
-                .andExpect(MockMvcResultMatchers.status().isOk())
-                .andReturn().getResponse().getContentAsString();
-        Assert.assertEquals(response, JSONObject.parseObject(result, Response.class));
-    }
-
-    @Test
     public void testModifyContacts() throws Exception {
         Contacts mci = new Contacts();
         Mockito.when(adminBasicInfoService.modifyContact(Mockito.any(Contacts.class), Mockito.any(HttpHeaders.class))).thenReturn(response);

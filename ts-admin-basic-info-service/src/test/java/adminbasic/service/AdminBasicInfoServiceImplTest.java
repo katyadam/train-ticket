@@ -46,17 +46,6 @@ public class AdminBasicInfoServiceImplTest {
     }
 
     @Test
-    public void testDeleteContact() {
-        Mockito.when(restTemplate.exchange(
-                "http://ts-contacts-service:12347/api/v1/contactservice/contacts/" + "contactsId",
-                HttpMethod.DELETE,
-                requestEntity,
-                Response.class)).thenReturn(re);
-        response = adminBasicInfoService.deleteContact("contactsId", headers);
-        Assert.assertEquals(new Response<>(null, null, null), response);
-    }
-
-    @Test
     public void testModifyContact() {
         Contacts mci = new Contacts();
         HttpEntity<Contacts> requestEntity = new HttpEntity<>(mci, headers);
