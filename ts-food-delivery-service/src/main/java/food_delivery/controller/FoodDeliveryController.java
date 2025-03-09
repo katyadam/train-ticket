@@ -34,14 +34,14 @@ public class FoodDeliveryController {
     @PostMapping("/orders")
     public HttpEntity createFoodDeliveryOrder(@RequestBody FoodDeliveryOrder fd, @RequestHeader HttpHeaders headers) {
         LOGGER.info("[Food Delivery Service][Create Food Delivery Order]");
-        var order = foodDeliveryService.createFoodDeliveryOrder(fd, headers);
+        Response order = foodDeliveryService.createFoodDeliveryOrder(fd, headers);
         return ok(order);
     }
 
     @DeleteMapping("/orders/d/{orderId}")
     public HttpEntity deleteFoodDeliveryOrder(@PathVariable String orderId, @RequestHeader HttpHeaders headers) {
         LOGGER.info("[Food Delivery Service][Delete Food Delivery Order]");
-        var fd = foodDeliveryService.getFoodDeliveryOrderById(orderId, headers);
+        Response fd = foodDeliveryService.getFoodDeliveryOrderById(orderId, headers);
         LOGGER.info(fd);
         return ok(foodDeliveryService.deleteFoodDeliveryOrder(orderId, headers));
     }
