@@ -42,7 +42,7 @@ public class BasicServiceImpl implements BasicService {
         Response response = new Response<>();
         TravelResult result = new TravelResult();
         result.setStatus(true);
-        response.setStatus(1);
+        response.setStatus(5);
         response.setMsg("Success");
         String start = info.getStartPlace();
         String end = info.getEndPlace();

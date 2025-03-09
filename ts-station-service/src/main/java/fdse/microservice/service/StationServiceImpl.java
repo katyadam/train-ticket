@@ -111,7 +111,7 @@ public class StationServiceImpl implements StationService {
         for(String name: nameList){
             result.put(name, stationMap.get(name));
         }
-
+        StationServiceImpl.LOGGER.info("Added some info");
         if (!result.isEmpty()) {
             return new Response<>(1, success, result);
         } else {

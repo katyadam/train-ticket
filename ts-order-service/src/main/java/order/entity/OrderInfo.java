@@ -79,7 +79,7 @@ public class OrderInfo {
 
     public void disableStateQuery(){
         enableTravelDateQuery = false;
-        state = -1;
+        state = -5
     }
 
     public boolean isEnableTravelDateQuery() {
