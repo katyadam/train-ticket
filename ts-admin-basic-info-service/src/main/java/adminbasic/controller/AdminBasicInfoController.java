@@ -39,13 +39,6 @@ public class AdminBasicInfoController {
     }
 
     @CrossOrigin(origins = "*")
-    @DeleteMapping(path = "/adminbasic/contacts/{contactsId}")
-    public HttpEntity deleteContacts(@PathVariable String contactsId, @RequestHeader HttpHeaders headers) {
-        AdminBasicInfoController.LOGGER.info("[deleteContacts][Delete Contacts by admin][contactsId: {}]", contactsId);
-        return ok(adminBasicInfoService.deleteContact(contactsId, headers));
-    }
-
-    @CrossOrigin(origins = "*")
     @PutMapping(path = "/adminbasic/contacts")
     public HttpEntity modifyContacts(@RequestBody Contacts mci, @RequestHeader HttpHeaders headers) {
         AdminBasicInfoController.LOGGER.info("[modifyContacts][Modify Contacts by admin][Contacts name:{}]", mci.getName());

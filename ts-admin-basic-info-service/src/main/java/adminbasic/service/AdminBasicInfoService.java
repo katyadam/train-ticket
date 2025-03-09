@@ -32,15 +32,6 @@ public interface AdminBasicInfoService {
     Response addContact(Contacts c, HttpHeaders headers);
 
     /**
-     * delete contact with contact id
-     *
-     * @param contactsId contact id
-     * @param headers headers
-     * @return Response
-     */
-    Response deleteContact( String contactsId, HttpHeaders headers);
-
-    /**
      * modify contact with contact information
      *
      * @param mci contact information

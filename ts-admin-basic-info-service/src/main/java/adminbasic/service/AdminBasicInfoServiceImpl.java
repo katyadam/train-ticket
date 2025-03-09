@@ -52,21 +52,6 @@ public class AdminBasicInfoServiceImpl implements AdminBasicInfoService {
     }
 
     @Override
-    public Response deleteContact(String contactsId, HttpHeaders headers) {
-        Response result;
-        HttpEntity requestEntity = new HttpEntity(headers);
-        String contacts_service_url = getServiceUrl("ts-contacts-service");
-        ResponseEntity<Response> re = restTemplate.exchange(
-                contacts_service_url + "/api/v1/contactservice/contacts/" + contactsId,
-                HttpMethod.DELETE,
-                requestEntity,
-                Response.class);
-        result = re.getBody();
-
-        return result;
-    }
-
-    @Override
     public Response modifyContact(Contacts mci, HttpHeaders headers) {
         Response result;
         HttpEntity requestEntity = new HttpEntity(mci, headers);

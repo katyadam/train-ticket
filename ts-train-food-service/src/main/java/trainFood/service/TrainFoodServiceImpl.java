@@ -39,17 +39,6 @@ public class TrainFoodServiceImpl implements TrainFoodService{
     }
 
     @Override
-    public Response listTrainFood(HttpHeaders headers) {
-        List<TrainFood> trainFoodList = trainFoodRepository.findAll();
-        if (trainFoodList != null && !trainFoodList.isEmpty()) {
-            return new Response<>(1, success, trainFoodList);
-        } else {
-            TrainFoodServiceImpl.LOGGER.error("List train food error: {}", noContent);
-            return new Response<>(0, noContent, null);
-        }
-    }
-
-    @Override
     public Response listTrainFoodByTripId(String tripId, HttpHeaders headers) {
         TrainFood tf = trainFoodRepository.findByTripId(tripId);
         if(tf == null){
