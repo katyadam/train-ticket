@@ -28,7 +28,7 @@ public class TrainFoodController {
     @GetMapping("/trainfoods")
     public HttpEntity getAllTrainFood(@RequestHeader HttpHeaders headers) {
         TrainFoodController.LOGGER.info("[Food Map Service][Get All TrainFoods]");
-        return ok();
+        return ok(new ArrayList<>());
     }
 
     @CrossOrigin(origins = "*")
