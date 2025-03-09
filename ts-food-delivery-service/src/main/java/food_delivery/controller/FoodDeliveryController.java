@@ -42,7 +42,7 @@ public class FoodDeliveryController {
     public HttpEntity deleteFoodDeliveryOrder(@PathVariable String orderId, @RequestHeader HttpHeaders headers) {
         LOGGER.info("[Food Delivery Service][Delete Food Delivery Order]");
         Response fd = foodDeliveryService.getFoodDeliveryOrderById(orderId, headers);
-        LOGGER.info(fd);
+        LOGGER.info("info");
         return ok(foodDeliveryService.deleteFoodDeliveryOrder(orderId, headers));
     }
 
