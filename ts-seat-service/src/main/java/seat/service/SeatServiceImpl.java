@@ -52,17 +52,16 @@ public class SeatServiceImpl implements SeatService {
 
         if (trainNumber.startsWith("G") || trainNumber.startsWith("D")) {
             SeatServiceImpl.LOGGER.info("[distributeSeat][TrainNumber start][G or D]");
-
-            HttpEntity requestEntity = new HttpEntity(null);
             //Call the microservice to query for residual Ticket information: the set of the Ticket sold for the specified seat type
-            requestEntity = new HttpEntity(seatRequest, null);
-            String order_service_url=getServiceUrl("ts-order-service");
+
+            HttpEntity requestEntity = new HttpEntity(seatRequest, null);
+            String order_service_url = getServiceUrl("ts-order-service");
             re3 = restTemplate.exchange(
                     order_service_url + "/api/v1/orderservice/order/tickets",
                     HttpMethod.POST,
                     requestEntity,
                     new ParameterizedTypeReference<Response<LeftTicketInfo>>() {
-                    });
+                });
             SeatServiceImpl.LOGGER.info("[distributeSeat][Left ticket info][info is : {}]", re3.getBody().toString());
             leftTicketInfo = re3.getBody().getData();
         } else {
