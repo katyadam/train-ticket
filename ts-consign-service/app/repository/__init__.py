@@ -1,0 +1,1 @@
+"""Consign persistence."""

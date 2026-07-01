@@ -1,0 +1,18 @@
+{
+  "reference_commit": "313886e99befb94be6cd45f085c98e0019f59829",
+  "java_source_target": "8",
+  "spring_boot": "2.3.12.RELEASE",
+  "spring_cloud": "Hoxton.SR12",
+  "spring_cloud_alibaba": "2.2.7.RELEASE",
+  "jjwt": "0.8.0",
+  "nacos_server": "2.0.1",
+  "mysql": "5.7.34",
+  "timezone": "Asia/Shanghai",
+  "replacement_runtime": {
+    "go": "1.22.12",
+    "python_container": "3.11.11",
+    "python_development_range": ">=3.11,<3.14",
+    "skywalking_python_agent": "1.2.0",
+    "go2sky": "1.5.0"
+  }
+}

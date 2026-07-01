@@ -529,10 +529,10 @@ spec:
           image: codewisdom/ts-consign-service:1.0.1
           imagePullPolicy: IfNotPresent
           env:
-            - name: NODE_IP
+            - name: POD_IP
               valueFrom:
                 fieldRef:
-                  fieldPath: status.hostIP
+                  fieldPath: status.podIP
           envFrom:
             - secretRef:
                 name: ts-consign-mysql
@@ -1281,10 +1281,10 @@ spec:
           image: codewisdom/ts-route-plan-service:1.0.0
           imagePullPolicy: IfNotPresent
           env:
-            - name: NODE_IP
+            - name: POD_IP
               valueFrom:
                 fieldRef:
-                  fieldPath: status.hostIP
+                  fieldPath: status.podIP
           envFrom:
             - configMapRef:
                 name: nacos
@@ -1497,10 +1497,10 @@ spec:
           image: codewisdom/ts-station-service:1.0.1
           imagePullPolicy: IfNotPresent
           env:
-            - name: NODE_IP
+            - name: POD_IP
               valueFrom:
                 fieldRef:
-                  fieldPath: status.hostIP
+                  fieldPath: status.podIP
           envFrom:
             - secretRef:
                 name: ts-station-mysql
@@ -1673,10 +1673,10 @@ spec:
           image: codewisdom/ts-travel-plan-service:1.0.0
           imagePullPolicy: IfNotPresent
           env:
-            - name: NODE_IP
+            - name: POD_IP
               valueFrom:
                 fieldRef:
-                  fieldPath: status.hostIP
+                  fieldPath: status.podIP
           envFrom:
             - configMapRef:
                 name: nacos

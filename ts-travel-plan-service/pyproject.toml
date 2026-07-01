@@ -1,0 +1,24 @@
+[project]
+name = "ts-travel-plan-service"
+version = "1.0.0"
+requires-python = ">=3.11,<3.14"
+dependencies = [
+  "apache-skywalking==1.2.0",
+  "fastapi==0.115.8",
+  "httpx==0.28.1",
+  "pydantic==2.10.6",
+  "uvicorn==0.34.0",
+]
+
+[dependency-groups]
+dev = [
+  "pytest==8.3.4",
+  "pytest-asyncio==0.25.3",
+]
+
+[tool.pytest.ini_options]
+addopts = "-q"
+asyncio_mode = "auto"
+asyncio_default_fixture_loop_scope = "function"
+pythonpath = ["."]
+testpaths = ["tests"]

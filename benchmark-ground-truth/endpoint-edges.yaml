@@ -1,0 +1,41 @@
+{
+  "schema_version": 1,
+  "kind": "selected-service-business-rest-endpoint-edges",
+  "edges": [
+    {"source":"ts-admin-basic-info-service","target":"ts-station-service","method":"GET","path":"/api/v1/stationservice/stations"},
+    {"source":"ts-admin-basic-info-service","target":"ts-station-service","method":"POST","path":"/api/v1/stationservice/stations"},
+    {"source":"ts-admin-basic-info-service","target":"ts-station-service","method":"PUT","path":"/api/v1/stationservice/stations"},
+    {"source":"ts-admin-basic-info-service","target":"ts-station-service","method":"DELETE","path":"/api/v1/stationservice/stations/{stationsId}"},
+    {"source":"ts-admin-route-service","target":"ts-station-service","method":"POST","path":"/api/v1/stationservice/stations/idlist"},
+    {"source":"ts-admin-travel-service","target":"ts-station-service","method":"POST","path":"/api/v1/stationservice/stations/idlist"},
+    {"source":"ts-basic-service","target":"ts-station-service","method":"GET","path":"/api/v1/stationservice/stations/id/{stationNameForId}"},
+    {"source":"ts-basic-service","target":"ts-station-service","method":"POST","path":"/api/v1/stationservice/stations/idlist"},
+    {"source":"ts-order-service","target":"ts-station-service","method":"POST","path":"/api/v1/stationservice/stations/namelist"},
+    {"source":"ts-order-other-service","target":"ts-station-service","method":"POST","path":"/api/v1/stationservice/stations/namelist"},
+    {"source":"ts-preserve-service","target":"ts-station-service","method":"GET","path":"/api/v1/stationservice/stations/id/{stationNameForId}"},
+    {"source":"ts-preserve-other-service","target":"ts-station-service","method":"GET","path":"/api/v1/stationservice/stations/id/{stationNameForId}"},
+
+    {"source":"ts-preserve-service","target":"ts-consign-service","method":"POST","path":"/api/v1/consignservice/consigns"},
+    {"source":"ts-preserve-other-service","target":"ts-consign-service","method":"POST","path":"/api/v1/consignservice/consigns"},
+    {"source":"ts-consign-service","target":"ts-consign-price-service","method":"GET","path":"/api/v1/consignpriceservice/consignprice/{weight}/{within}"},
+
+    {"source":"ts-travel-plan-service","target":"ts-travel-service","method":"POST","path":"/api/v1/travelservice/trips/left"},
+    {"source":"ts-travel-plan-service","target":"ts-travel2-service","method":"POST","path":"/api/v1/travel2service/trips/left"},
+    {"source":"ts-travel-plan-service","target":"ts-route-plan-service","method":"POST","path":"/api/v1/routeplanservice/routePlan/cheapestRoute"},
+    {"source":"ts-travel-plan-service","target":"ts-route-plan-service","method":"POST","path":"/api/v1/routeplanservice/routePlan/quickestRoute"},
+    {"source":"ts-travel-plan-service","target":"ts-route-plan-service","method":"POST","path":"/api/v1/routeplanservice/routePlan/minStopStations"},
+    {"source":"ts-travel-plan-service","target":"ts-train-service","method":"GET","path":"/api/v1/trainservice/trains/byName/{trainTypeName}"},
+    {"source":"ts-travel-plan-service","target":"ts-seat-service","method":"POST","path":"/api/v1/seatservice/seats/left_tickets"},
+
+    {"source":"ts-route-plan-service","target":"ts-travel-service","method":"POST","path":"/api/v1/travelservice/trips/left"},
+    {"source":"ts-route-plan-service","target":"ts-travel2-service","method":"POST","path":"/api/v1/travel2service/trips/left"},
+    {"source":"ts-route-plan-service","target":"ts-travel-service","method":"GET","path":"/api/v1/travelservice/routes/{tripId}"},
+    {"source":"ts-route-plan-service","target":"ts-travel2-service","method":"GET","path":"/api/v1/travel2service/routes/{tripId}"},
+    {"source":"ts-route-plan-service","target":"ts-route-service","method":"GET","path":"/api/v1/routeservice/routes/{startStation}/{endStation}"},
+    {"source":"ts-route-plan-service","target":"ts-travel-service","method":"POST","path":"/api/v1/travelservice/trips/routes"},
+    {"source":"ts-route-plan-service","target":"ts-travel2-service","method":"POST","path":"/api/v1/travel2service/trips/routes"},
+    {"source":"ts-route-plan-service","target":"ts-travel-service","method":"POST","path":"/api/v1/travelservice/trip_detail"},
+    {"source":"ts-route-plan-service","target":"ts-travel2-service","method":"POST","path":"/api/v1/travel2service/trip_detail"},
+    {"source":"ts-route-plan-service","target":"ts-route-service","method":"GET","path":"/api/v1/routeservice/routes/{routeId}"}
+  ]
+}

@@ -1,0 +1,15 @@
+{
+  "jackson_version": "2.12.2",
+  "boolean_property": "within",
+  "accepted_example": {"within": true},
+  "double_to_string_examples": {
+    "1.0": "1.0",
+    "-0.0": "-0.0",
+    "0.0001": "1.0E-4",
+    "9999999.0": "9999999.0",
+    "10000000.0": "1.0E7",
+    "1.23456789012345e20": "1.23456789012345E20",
+    "NaN": "NaN",
+    "Infinity": "Infinity"
+  }
+}

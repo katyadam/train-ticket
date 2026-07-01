@@ -6,11 +6,12 @@ pipeline {
     }
     stages {
 
-        // At this stage, the jar artifacts are first built using maven, and then the docker images are built.
+        // Build the remaining Java services and the rewritten Go/Python services.
         stage('Build') {
             steps {
-                echo "Maven Building..."
-                sh 'mvn clean package -Dmaven.test.skip=true'
+                echo "Polyglot build..."
+                sh 'command -v go && command -v uv'
+                sh 'make package'
                 echo "Package Successful!"
 
                 script {
@@ -38,7 +39,7 @@ pipeline {
                 sh "mvn pmd:pmd"
 
                 echo "Unit Test..."
-                sh 'mvn test'
+                sh 'make test'
                 echo "Test Successful"
 	
                 jacoco(

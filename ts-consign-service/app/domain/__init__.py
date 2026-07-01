@@ -1,0 +1,1 @@
+"""Wire-compatible consign models."""

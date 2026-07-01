@@ -1,0 +1,37 @@
+{
+  "schema_version": 1,
+  "owners": [
+    {
+      "service": "ts-station-service",
+      "database": "ts-station-mysql",
+      "engine": "mysql-5.7",
+      "table": "station",
+      "storage_engine": "InnoDB",
+      "baseline_ddl": "compatibility-tests/baseline/mysql57-ddl.sql",
+      "environment": ["STATION_MYSQL_HOST", "STATION_MYSQL_PORT", "STATION_MYSQL_DATABASE", "STATION_MYSQL_USER", "STATION_MYSQL_PASSWORD"],
+      "columns": ["id", "name", "stay_time"],
+      "nullable_columns": ["name"],
+      "startup": "idempotently seed the 13 Java-baseline stations"
+    },
+    {
+      "service": "ts-consign-service",
+      "database": "ts-consign-mysql",
+      "engine": "mysql-5.7",
+      "table": "consign_record",
+      "storage_engine": "MyISAM",
+      "baseline_ddl": "compatibility-tests/baseline/mysql57-ddl.sql",
+      "environment": ["CONSIGN_MYSQL_HOST", "CONSIGN_MYSQL_PORT", "CONSIGN_MYSQL_DATABASE", "CONSIGN_MYSQL_USER", "CONSIGN_MYSQL_PASSWORD"],
+      "columns": ["consign_record_id", "user_id", "consignee", "from_place", "handle_date", "order_id", "consign_record_phone", "consign_record_price", "target_date", "to_place", "weight"],
+      "nullable_columns": ["user_id", "consignee", "from_place", "handle_date", "order_id", "consign_record_phone", "consign_record_price", "target_date", "to_place"],
+      "startup": "no-op"
+    }
+  ],
+  "infrastructure_relations": [
+    {"source":"ts-station-service","target":"nacos","kind":"service-discovery"},
+    {"source":"ts-route-plan-service","target":"nacos","kind":"service-discovery"},
+    {"source":"ts-travel-plan-service","target":"nacos","kind":"service-discovery"},
+    {"source":"ts-consign-service","target":"nacos","kind":"service-discovery"},
+    {"source":"ts-station-service","target":"ts-station-mysql","kind":"database"},
+    {"source":"ts-consign-service","target":"ts-consign-mysql","kind":"database"}
+  ]
+}

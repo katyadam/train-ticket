@@ -406,8 +406,13 @@ spec:
     spec:
       containers:
       - name: ts-consign-service
-        image: codewisdom/ts-consign-service-with-jaeger:v1
+        image: codewisdom/ts-consign-service:1.0.1
         imagePullPolicy: Always
+        env:
+        - name: POD_IP
+          valueFrom:
+            fieldRef:
+              fieldPath: status.podIP
         ports:
         - containerPort: 16111
         resources:
@@ -966,8 +971,13 @@ spec:
     spec:
       containers:
       - name: ts-route-plan-service
-        image: codewisdom/ts-route-plan-service-with-jaeger:v1
+        image: codewisdom/ts-route-plan-service:1.0.0
         imagePullPolicy: Always
+        env:
+        - name: POD_IP
+          valueFrom:
+            fieldRef:
+              fieldPath: status.podIP
         ports:
         - containerPort: 14578
         resources:
@@ -1141,8 +1151,13 @@ spec:
     spec:
       containers:
       - name: ts-station-service
-        image: codewisdom/ts-station-service-with-jaeger:v1
+        image: codewisdom/ts-station-service:1.0.1
         imagePullPolicy: Always
+        env:
+        - name: POD_IP
+          valueFrom:
+            fieldRef:
+              fieldPath: status.podIP
         ports:
         - containerPort: 12345
         resources:
@@ -1316,8 +1331,13 @@ spec:
     spec:
       containers:
       - name: ts-travel-plan-service
-        image: codewisdom/ts-travel-plan-service-with-jaeger:v1
+        image: codewisdom/ts-travel-plan-service:1.0.0
         imagePullPolicy: Always
+        env:
+        - name: POD_IP
+          valueFrom:
+            fieldRef:
+              fieldPath: status.podIP
         ports:
         - containerPort: 14322
         resources:

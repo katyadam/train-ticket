@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "scenarios": [
+    {"id":"station-public-lookups","entry":"gateway","activates":["station list","name-to-id","id-to-name","batch conversions"]},
+    {"id":"station-admin-lifecycle","entry":"gateway","activates":["station create","station update","station delete"]},
+    {"id":"travel-cheapest","entry":"gateway","activates":["travel-plan -> route-plan cheapest","route-plan -> travel/travel2","route-plan -> trip route","travel-plan -> train","travel-plan -> seat twice per result"]},
+    {"id":"travel-quickest","entry":"gateway","activates":["travel-plan -> route-plan quickest","route-plan -> travel/travel2","route-plan -> trip route","travel-plan enrichment"]},
+    {"id":"travel-minimum-stops","entry":"gateway","activates":["travel-plan -> route-plan min stops","route-plan -> route","route-plan -> travel/travel2 by routes","trip details","route by id","travel-plan enrichment"]},
+    {"id":"travel-transfer","entry":"gateway","activates":["travel-plan -> travel/travel2 four sequential calls"]},
+    {"id":"preserve-with-consign","entry":"gateway","variants":["ts-preserve-service","ts-preserve-other-service"],"activates":["preserve -> station","preserve -> consign","consign -> consign-price","consign persistence"]},
+    {"id":"consign-query-auth","entry":"gateway","activates":["USER access","ADMIN access","missing token","expired token","invalid signature"]},
+    {"id":"polyglot-trace","entry":"gateway","activates":["Java gateway -> Python travel-plan -> Go route-plan -> Java travel/route","Java preserve -> Python consign -> Java consign-price"]}
+  ]
+}

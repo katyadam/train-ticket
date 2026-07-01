@@ -33,3 +33,9 @@ ENV/
 env.bak/
 venv.bak/
 
+# Generated dependency trees and binary download caches. Dependency versions
+# remain reproducible through go.sum and the hash-locked Python requirements.
+ts-route-plan-service/vendor/
+ts-station-service/vendor/
+ts-travel-plan-service/wheels/
+ts-consign-service/wheels/

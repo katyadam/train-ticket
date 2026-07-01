@@ -1,0 +1,36 @@
+{
+  "source_commit": "313886e99befb94be6cd45f085c98e0019f59829",
+  "build_jdk": "17.0.12",
+  "maven_tests_skipped": true,
+  "artifacts": [
+    {
+      "service": "ts-route-plan-service",
+      "file": "ts-route-plan-service-1.0.jar",
+      "size": 62490656,
+      "sha256": "4a05d8f40c246db19074288c22e462162f5762f5f0744eb87c5db86a90f0d504"
+    },
+    {
+      "service": "ts-travel-plan-service",
+      "file": "ts-travel-plan-service-1.0.jar",
+      "size": 62494280,
+      "sha256": "5a931340d561fd491f8118e3f246cf4da9c69a582b3840b7f8ce5490dfba2b69"
+    },
+    {
+      "service": "ts-station-service",
+      "file": "ts-station-service-1.0.jar",
+      "size": 80897679,
+      "sha256": "59b9899551419ab6d6195440594ebce7743e4361efb7a1923aabc4e34cd799b7"
+    },
+    {
+      "service": "ts-consign-service",
+      "file": "ts-consign-service-1.0.jar",
+      "size": 80903478,
+      "sha256": "f7a1646730433445a26ca8f7ec73077e31f2f42d596a1ba1bc7161d8d1122fc6"
+    }
+  ],
+  "historical_container_base": {
+    "reference": "java:8-jre",
+    "available_on_2026-07-01": false,
+    "reason": "Docker Hub returns MANIFEST_UNKNOWN for the tag; no substitute digest is recorded as the original baseline."
+  }
+}

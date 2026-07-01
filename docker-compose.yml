@@ -159,11 +159,23 @@ services:
     restart: always
     ports:
       - 12345:12345
+    environment:
+      NACOS_ENABLED: "false"
+      STATION_MYSQL_HOST: ts-station-mysql
+      STATION_MYSQL_PORT: "3306"
+      STATION_MYSQL_DATABASE: ts-station-mysql
+      STATION_MYSQL_USER: root
+      STATION_MYSQL_PASSWORD: "Abcd1234#"
+    depends_on:
+      - ts-station-mysql
     networks:
       - my-network
 
-  ts-station-mongo:
-    image: mongo
+  ts-station-mysql:
+    image: mysql:5.7
+    environment:
+      MYSQL_ROOT_PASSWORD: "Abcd1234#"
+      MYSQL_DATABASE: ts-station-mysql
     networks:
       - my-network
 
@@ -372,6 +384,13 @@ services:
         restart: always
         ports:
           - 14322:14322
+        environment:
+          NACOS_ENABLED: "false"
+          TRAVEL_SERVICE_URL: http://ts-travel-service:12346
+          TRAVEL2_SERVICE_URL: http://ts-travel2-service:16346
+          ROUTE_PLAN_SERVICE_URL: http://ts-route-plan-service:14578
+          TRAIN_SERVICE_URL: http://ts-train-service:14567
+          SEAT_SERVICE_URL: http://ts-seat-service:18898
         networks:
           - my-network
 
@@ -445,6 +464,11 @@ services:
           restart: always
           ports:
             - 14578:14578
+          environment:
+            NACOS_ENABLED: "false"
+            TRAVEL_SERVICE_URL: http://ts-travel-service:12346
+            TRAVEL2_SERVICE_URL: http://ts-travel2-service:16346
+            ROUTE_SERVICE_URL: http://ts-route-service:11178
           networks:
             - my-network
 
@@ -463,11 +487,24 @@ services:
             restart: always
             ports:
               - 16111:16111
+            environment:
+              NACOS_ENABLED: "false"
+              CONSIGN_PRICE_SERVICE_URL: http://ts-consign-price-service:16110
+              CONSIGN_MYSQL_HOST: ts-consign-mysql
+              CONSIGN_MYSQL_PORT: "3306"
+              CONSIGN_MYSQL_DATABASE: ts-consign-mysql
+              CONSIGN_MYSQL_USER: root
+              CONSIGN_MYSQL_PASSWORD: root
+            depends_on:
+              - ts-consign-mysql
             networks:
               - my-network
 
-  ts-consign-mongo:
-    image: mongo
+  ts-consign-mysql:
+    image: mysql:5.7
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: ts-consign-mysql
     networks:
       - my-network
 

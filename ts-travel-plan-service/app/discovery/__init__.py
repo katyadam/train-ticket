@@ -1,0 +1,1 @@
+"""Nacos discovery adapter."""

@@ -3,12 +3,22 @@
 # <img src="./image/logo.png">
 
 
-The project is a train ticket booking system based on microservice architecture which contains 41 microservices. The programming languages and frameworks it used are as below.
-- Java - Spring Boot, Spring Cloud
-- Node.js - Express
-- Python - Django
-- Go - Webgo
-- DB - Mongo、MySQL
+The project is a train ticket booking system based on microservice architecture. This benchmark variant is deliberately polyglot:
+
+- Java — Spring Boot and Spring Cloud for the existing services
+- Go — `ts-route-plan-service` and `ts-station-service` (plus the existing news service)
+- Python — FastAPI for `ts-travel-plan-service` and `ts-consign-service` (plus the existing Python services)
+- Node.js — Express
+- Persistence — MySQL for the rewritten stateful services
+
+The four rewrites preserve the original service names, ports, methods, paths, response envelopes, database ownership, Nacos identities, downstream call order, and business REST edge set. Known legacy behaviors—such as the travel-plan seat-station swap and station DELETE authorization matcher—are intentionally retained.
+
+| Service | Language | Port | Architectural role |
+|---|---|---:|---|
+| `ts-route-plan-service` | Go | 14578 | route-selection orchestrator |
+| `ts-station-service` | Go | 12345 | high-fan-in MySQL station catalog |
+| `ts-travel-plan-service` | Python | 14322 | travel-search orchestrator |
+| `ts-consign-service` | Python | 16111 | authenticated MySQL consign service |
 
 You can get more details at [Wiki Pages](https://github.com/FudanSELab/train-ticket/wiki).
 
@@ -61,6 +71,8 @@ make deploy DeployArgs="--with-monitoring"
 make deploy DeployArgs="--with-tracing"
 ```
 
+The tracing profile uses the existing SkyWalking service identities. Java services keep the Java agent, Python services start through the official `sw-python` launcher, and Go services enable SW8-compatible server/client instrumentation only when the tracing backend variable is present.
+
 ### Deploy All 
 ```bash
 make deploy DeployArgs="--all"
@@ -89,7 +101,17 @@ make reset-deploy
 ## Build From Source
 In the above, We use pre-built images to quickly deploy the application.
 
-If you want to build the application from source, you can refer to [the Installation Guide](https://github.com/FudanSELab/train-ticket/wiki/Installation-Guide).
+Building the polyglot tree requires a Java 8-compatible JDK (JDK 17 is the verified local toolchain), Maven, Go 1.22+, Python 3.11–3.13, `uv`, and Docker. Do not use JDK 25 for the legacy Maven reactor; its old Lombok version does not generate the required accessors there.
+
+```bash
+make package             # remaining Java plus both Go and both Python services
+make compatibility-test  # architecture oracle and real Python-to-Go contract
+make build               # package and build every service image
+```
+
+The Go dependency graphs are pinned by `go.mod` and `go.sum`. The Python images use pinned Python 3.11.11—required for the selected SkyWalking agent's plugin loader—and install fully pinned dependencies through hash-locked requirement files. Fresh image builds require registry access, but every downloaded dependency is checksum-verified; generated `vendor/` trees and wheel caches stay outside the analysis corpus.
+
+The machine-readable Voyantclair oracle is in [`benchmark-ground-truth`](benchmark-ground-truth/README.md). It records all service languages, the complete business REST graph, selected endpoint edges, persistence ownership, and edge-activating scenarios.
 
 ## Test scripts
 Use scripts to test train-ticket: [https://github.com/FudanSELab/train-ticket-auto-query](https://github.com/FudanSELab/train-ticket-auto-query)
@@ -177,6 +199,3 @@ Xiang Zhou, Xin Peng, Tao Xie, Jun Sun, Chenjie Xu, Chao Ji, and Wenyun Zhao. <b
 **Poster: Benchmarking Microservice Systems for Software Engineering Research.** <br/>
 In Proceedings of the 40th International Conference on Software Engineering ([ICSE 2018](https://www.icse2018.org/)) , Posters, Gothenburg, Sweden, May 2018. <br/>
 Download: [[PDF](https://cspengxin.github.io/publications/icse18poster-microservices.pdf)] [[BibTeX](https://dblp.uni-trier.de/rec/bibtex/conf/icse/ZhouPX0XJZ18)] 
-
-
-

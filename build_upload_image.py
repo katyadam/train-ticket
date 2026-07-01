@@ -8,16 +8,17 @@ build_paths = []
 
 
 def main():
-    if not mvn_build():
-        print("mvn build failed")
+    if not polyglot_build():
+        print("polyglot build failed")
+        return
     init_docker_build_paths()
     # docker_login()
     docker_build_and_push()
 
 
-def mvn_build():
-    mvn_status = os.system("mvn clean package -DskipTests")
-    return mvn_status == 0
+def polyglot_build():
+    build_status = os.system("make package")
+    return build_status == 0
 
 
 def init_docker_build_paths():
@@ -61,4 +62,3 @@ def docker_build_and_push():
 
 if __name__ == '__main__':
     main()
-
