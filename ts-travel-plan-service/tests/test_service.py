@@ -24,13 +24,14 @@ class StaticResolver:
 
 def service_with_transport(handler):
     client = httpx.AsyncClient(transport=httpx.MockTransport(handler))
-    transport = Transport(StaticResolver(), client)
+    resolver = StaticResolver()
+    transport = Transport(resolver, client)
     service = TravelPlanService(
-        TravelClient(transport),
+        TravelClient(resolver, client),
         Travel2Client(transport),
         RoutePlanClient(transport),
-        TrainClient(transport),
-        SeatClient(transport),
+        TrainClient(resolver, client),
+        SeatClient(resolver, client),
     )
     return service, client
 

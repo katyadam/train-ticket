@@ -24,11 +24,11 @@ from app.service.travel_plan import TravelPlanService
 def build_service(discovery: NacosDiscovery, client: httpx.AsyncClient) -> TravelPlanService:
     transport = Transport(discovery, client)
     return TravelPlanService(
-        TravelClient(transport),
+        TravelClient(discovery, client),
         Travel2Client(transport),
         RoutePlanClient(transport),
-        TrainClient(transport),
-        SeatClient(transport),
+        TrainClient(discovery, client),
+        SeatClient(discovery, client),
     )
 
 
